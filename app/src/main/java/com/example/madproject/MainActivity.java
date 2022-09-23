@@ -4,24 +4,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
+
 
 import com.example.madproject.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText firstNumber, secondNumber;
-    private TextView resultTextview;
-    private Button addButton, subButton, multiplyButton,divButton,equalButton;
-    private float number1, number2,result;
-    private String operation;
-    private ToggleButton toggle;
+
 
     ActivityMainBinding binding;
 
@@ -57,26 +46,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        binding.BottomNavigation.setOnItemSelectedListener(item->{
-//            Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
-
-
-
-//            switch (item.getItemId())
-//            {
-//                case R.id.listid:
-//                    replaceFregment(new ListFragment());
-//                    break;
-//                case R.id.addtaskid:
-//                    replaceFregment(new AddTaskFragment());
-//                    break;
-//                case R.id.settingsid:
-//                    replaceFregment(new SetttingsFragment());
-//                    break;
-//            }
-//
-//            return true;
-//        });
 
 
 

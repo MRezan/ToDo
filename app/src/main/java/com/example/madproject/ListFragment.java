@@ -3,10 +3,23 @@ package com.example.madproject;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import com.example.madproject.Adapter.ToDoADapter;
+import com.example.madproject.Model.ToDoModel;
+import com.example.madproject.Utils.DatabaseHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +27,13 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ListFragment extends Fragment {
+
+    public RecyclerView recyclerView;
+    private FloatingActionButton floatingActionButton;
+    private DatabaseHelper myDb;
+    private List<ToDoModel> mList;
+    private ToDoADapter aDapter;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,12 +73,52 @@ public class ListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        View view= inflater.inflate(R.layout.fragment_list, container, false);
+
+
+
+        recyclerView = (RecyclerView) getView().findViewById(R.id.recycleViewId);
+
+
+//        myDb=new DatabaseHelper(container.getContext());
+//        mList = new ArrayList<>();
+//        aDapter = new ToDoADapter(myDb,ListFragment.this);
+
+
+//
+//
+//          recyclerView.hasFixedSize();
+           recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
+//
+//        mList = myDb.getAllTask();
+//        Collections.reverse(mList);
+//        aDapter.setTask(mList);
+//        aDapter.notifyDataSetChanged();
+
+
+
+
+
+
+
+        return view;
+
+
+
+
+
+
+
     }
 }

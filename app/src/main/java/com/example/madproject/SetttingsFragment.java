@@ -2,11 +2,15 @@ package com.example.madproject;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,7 @@ public class SetttingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ToggleButton toggleButton;
 
     public SetttingsFragment() {
         // Required empty public constructor
@@ -59,6 +64,31 @@ public class SetttingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setttings, container, false);
+        View view= inflater.inflate(R.layout.fragment_setttings, container, false);
+
+
+        toggleButton= (ToggleButton) view.findViewById(R.id.togglebuttonid);
+
+
+
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    Toast.makeText(getContext(), "Dark mode on", Toast.LENGTH_SHORT).show();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    Toast.makeText(getContext(), "Dark mode off", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
+   return view;
+
+
+
     }
 }

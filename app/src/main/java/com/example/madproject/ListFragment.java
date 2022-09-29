@@ -1,5 +1,6 @@
 package com.example.madproject;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+
 
 import com.example.madproject.Adapter.ToDoADapter;
 import com.example.madproject.Model.ToDoModel;
@@ -32,7 +33,8 @@ public class ListFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     private DatabaseHelper myDb;
     private List<ToDoModel> mList;
-    private ToDoADapter aDapter;
+    private ToDoADapter aDapter , adapter2;
+    Activity activity = getActivity();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -74,11 +76,17 @@ public class ListFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+       // recyclerView = (RecyclerView) getView().findViewById(R.id.recycleViewId);
+
 
 
 
 
     }
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,23 +96,38 @@ public class ListFragment extends Fragment {
 
 
 
-        recyclerView = (RecyclerView) getView().findViewById(R.id.recycleViewId);
+        recyclerView =(RecyclerView) view.findViewById(R.id.recycleViewId);
+        recyclerView.setHasFixedSize(true);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        aDapter = new ToDoADapter(myDb,this);
 
 
-//        myDb=new DatabaseHelper(container.getContext());
-//        mList = new ArrayList<>();
-//        aDapter = new ToDoADapter(myDb,ListFragment.this);
 
 
-//
-//
-//          recyclerView.hasFixedSize();
-           recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
-//
-//        mList = myDb.getAllTask();
-//        Collections.reverse(mList);
-//        aDapter.setTask(mList);
-//        aDapter.notifyDataSetChanged();
+
+
+
+        myDb=new DatabaseHelper(getActivity());
+        mList = new ArrayList<>();
+        aDapter = new ToDoADapter(myDb,this);
+
+
+
+        mList = myDb.getAllTasks();
+
+        System.out.println(mList);
+
+        Collections.reverse(mList);
+        aDapter.setTask(mList);
+
+        aDapter.notifyDataSetChanged();
+        recyclerView.setAdapter(aDapter);
+
+
+
+
+
 
 
 
@@ -121,4 +144,6 @@ public class ListFragment extends Fragment {
 
 
     }
+
+
 }

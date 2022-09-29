@@ -78,30 +78,28 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
         notifyDataSetChanged();
     }
 
-    public void deleteTask(int positon)
-    {
-        ToDoModel item = mList.get(positon);
-        myDb.deleteTask(item.getId());
-        mList.remove(positon);
-        notifyItemRemoved(positon);
-    }
+//    public void deleteTask(int positon)
+//    {
+//        ToDoModel item = mList.get(positon);
+//        myDb.deleteTask(item.getId());
+//        mList.remove(positon);
+//        notifyItemRemoved(positon);
+//    }
 
-    public void editItem(int position)
-    {
-        ToDoModel item = mList.get(position);
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("id",item.getId());
-        bundle.putString("task",item.getTask());
-
-        AddFragment task = new  AddFragment();
-        task.setArguments(bundle);
-
-
-
-
-
-    }
+//    public void editItem(int position)
+//    {
+//        ToDoModel item = mList.get(position);
+//
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("id",item.getId());
+//        bundle.putString("task",item.getTask());
+//
+//        AddFragment task = new  AddFragment();
+//        task.setArguments(bundle);
+//
+//
+//
+//    }
 
 
 

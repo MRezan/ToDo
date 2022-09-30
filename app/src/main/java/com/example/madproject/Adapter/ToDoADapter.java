@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -23,6 +24,7 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
     private List<ToDoModel> mList;
     public ListFragment listFragment;
     private DatabaseHelper myDb;
+
 
     public ToDoADapter(DatabaseHelper myDb, ListFragment listFragment)
     {
@@ -45,6 +47,12 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
      final ToDoModel item= mList.get(position);
      holder.checkBox.setText(item.getTask());
      holder.checkBox.setChecked(toBoolean(item.getStatus()));
+
+
+
+
+
+
      holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
          @Override
          public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -60,6 +68,21 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
 
          }
      });
+
+
+
+
+
+     holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             int position = holder.getAbsoluteAdapterPosition();
+             deleteTask(position);
+
+         }
+     });
+
+
     }
 
     public boolean toBoolean(int num)
@@ -78,13 +101,13 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
         notifyDataSetChanged();
     }
 
-//    public void deleteTask(int positon)
-//    {
-//        ToDoModel item = mList.get(positon);
-//        myDb.deleteTask(item.getId());
-//        mList.remove(positon);
-//        notifyItemRemoved(positon);
-//    }
+    public void deleteTask(int positon)
+    {
+        ToDoModel item = mList.get(positon);
+        myDb.deleteTask(item.getId());
+        mList.remove(positon);
+        notifyItemRemoved(positon);
+    }
 
 //    public void editItem(int position)
 //    {
@@ -106,6 +129,7 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
 
 
 
+
     @Override
     public int getItemCount() {
         return mList.size();
@@ -113,9 +137,12 @@ public class ToDoADapter extends RecyclerView.Adapter <ToDoADapter.MyViewHolder>
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         CheckBox checkBox;
+        Button deleteButton;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBox =itemView.findViewById(R.id.checkBoxId);
+            deleteButton=itemView.findViewById(R.id.deleteButtonId);
+
 
         }
     }
